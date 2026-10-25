@@ -1,0 +1,728 @@
+<Page x:Class="ARALReadingSystem.Views.CheckInRecordPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      Title="Check-in Record"
+      Background="#FFF8EB">
+
+    <!-- =========================================================
+         RESOURCES
+         ========================================================= -->
+
+    <Page.Resources>
+
+        <!-- SCORE CHOICE BUTTON -->
+
+        <Style x:Key="ScoreChoiceButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Width"
+                    Value="62"/>
+
+            <Setter Property="Height"
+                    Value="44"/>
+
+            <Setter Property="Margin"
+                    Value="6,0,0,0"/>
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="Foreground"
+                    Value="#91A2AF"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#DED9D0"/>
+
+            <Setter Property="BorderThickness"
+                    Value="2"/>
+
+            <Setter Property="FontSize"
+                    Value="15"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="11">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#F4F9FC"/>
+
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity"
+                                        Value="0.55"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+
+        <!-- BACK BUTTON -->
+
+        <Style x:Key="BackButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Height"
+                    Value="42"/>
+
+            <Setter Property="Padding"
+                    Value="16,0"/>
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="Foreground"
+                    Value="#607487"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#D9DFE3"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontSize"
+                    Value="13"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#F5F8FA"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+
+        <!-- SAVE BUTTON -->
+
+        <Style x:Key="SaveButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Height"
+                    Value="58"/>
+
+            <Setter Property="Background"
+                    Value="#1595E5"/>
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="11">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#0B83CD"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+    </Page.Resources>
+
+
+    <!-- =========================================================
+         MAIN PAGE
+         ========================================================= -->
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="94"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <!-- =====================================================
+             CHECK-IN HEADER
+             ===================================================== -->
+
+        <Border Grid.Row="0"
+                Background="#FFF8EB"
+                BorderBrush="#E4DDD2"
+                BorderThickness="0,0,0,1">
+
+            <Grid Margin="32,0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+
+                <StackPanel VerticalAlignment="Center">
+
+                    <TextBlock x:Name="PageTitleText"
+                               Text="Check-in #1 — Mag-aaral"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="#1D3043"/>
+
+                    <TextBlock x:Name="PageSubtitleText"
+                               Text="Grade 1 ARAL cohort · Matapos ang Sesyon 9"
+                               Margin="0,5,0,0"
+                               FontSize="13"
+                               Foreground="#61778A"/>
+
+                </StackPanel>
+
+
+                <Button Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource BackButtonStyle}"
+                        Click="BackButton_Click">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="←"
+                                   Margin="0,0,7,0"
+                                   FontSize="17"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Bumalik"
+                                   VerticalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Button>
+
+            </Grid>
+
+        </Border>
+
+
+        <!-- =====================================================
+             SCROLLABLE CONTENT
+             ===================================================== -->
+
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+
+            <Grid Margin="32,30,32,38">
+
+                <Grid.ColumnDefinitions>
+
+                    <!-- ASSESSMENT -->
+                    <ColumnDefinition Width="1.75*"/>
+
+                    <!-- GAP -->
+                    <ColumnDefinition Width="24"/>
+
+                    <!-- SUMMARY -->
+                    <ColumnDefinition Width="1*"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <!-- =================================================
+                     LEFT COLUMN
+                     ================================================= -->
+
+                <StackPanel Grid.Column="0">
+
+
+                    <!-- =============================================
+                         TITIK
+                         ============================================= -->
+
+                    <Border Background="White"
+                            BorderBrush="#E2DDD5"
+                            BorderThickness="1"
+                            CornerRadius="24"
+                            Padding="20"
+                            Margin="0,0,0,18">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,0,0,15">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="Titik"
+                                               FontSize="19"
+                                               FontWeight="Bold"
+                                               Foreground="#1D3043"/>
+
+                                    <TextBlock Text="Pagkilala ng titik at tunog"
+                                               Margin="0,3,0,0"
+                                               FontSize="13"
+                                               Foreground="#61778A"/>
+
+                                </StackPanel>
+
+
+                                <TextBlock x:Name="TitikScoreText"
+                                           Text="0 / 6"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontSize="16"
+                                           FontWeight="Bold"
+                                           Foreground="#0877BE"/>
+
+                            </Grid>
+
+
+                            <!-- Created dynamically by C# -->
+                            <StackPanel x:Name="TitikItemsPanel"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- =============================================
+                         PANTIG
+                         ============================================= -->
+
+                    <Border Background="White"
+                            BorderBrush="#E2DDD5"
+                            BorderThickness="1"
+                            CornerRadius="24"
+                            Padding="20"
+                            Margin="0,0,0,18">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,0,0,15">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="Pantig"
+                                               FontSize="19"
+                                               FontWeight="Bold"
+                                               Foreground="#1D3043"/>
+
+                                    <TextBlock Text="Pagbasa ng pantig"
+                                               Margin="0,3,0,0"
+                                               FontSize="13"
+                                               Foreground="#61778A"/>
+
+                                </StackPanel>
+
+
+                                <TextBlock x:Name="PantigScoreText"
+                                           Text="0 / 4"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontSize="16"
+                                           FontWeight="Bold"
+                                           Foreground="#0877BE"/>
+
+                            </Grid>
+
+
+                            <!-- Created dynamically by C# -->
+                            <StackPanel x:Name="PantigItemsPanel"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- =============================================
+                         SALITA
+                         ============================================= -->
+
+                    <Border Background="White"
+                            BorderBrush="#E2DDD5"
+                            BorderThickness="1"
+                            CornerRadius="24"
+                            Padding="20"
+                            Margin="0,0,0,18">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,0,0,15">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="Salita"
+                                               FontSize="19"
+                                               FontWeight="Bold"
+                                               Foreground="#1D3043"/>
+
+                                    <TextBlock Text="Pagbasa ng salita"
+                                               Margin="0,3,0,0"
+                                               FontSize="13"
+                                               Foreground="#61778A"/>
+
+                                </StackPanel>
+
+
+                                <TextBlock x:Name="SalitaScoreText"
+                                           Text="0 / 4"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontSize="16"
+                                           FontWeight="Bold"
+                                           Foreground="#0877BE"/>
+
+                            </Grid>
+
+
+                            <!-- Created dynamically by C# -->
+                            <StackPanel x:Name="SalitaItemsPanel"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+
+                    <!-- =============================================
+                         PARIRALA
+                         ============================================= -->
+
+                    <Border Background="White"
+                            BorderBrush="#E2DDD5"
+                            BorderThickness="1"
+                            CornerRadius="24"
+                            Padding="20">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,0,0,15">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="Parirala"
+                                               FontSize="19"
+                                               FontWeight="Bold"
+                                               Foreground="#1D3043"/>
+
+                                    <TextBlock Text="Pagbasa ng parirala"
+                                               Margin="0,3,0,0"
+                                               FontSize="13"
+                                               Foreground="#61778A"/>
+
+                                </StackPanel>
+
+
+                                <TextBlock x:Name="PariralaScoreText"
+                                           Text="0 / 3"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontSize="16"
+                                           FontWeight="Bold"
+                                           Foreground="#0877BE"/>
+
+                            </Grid>
+
+
+                            <!-- Created dynamically by C# -->
+                            <StackPanel x:Name="PariralaItemsPanel"/>
+
+                        </StackPanel>
+
+                    </Border>
+
+                </StackPanel>
+
+
+                <!-- =================================================
+                     RIGHT SUMMARY
+                     ================================================= -->
+
+                <Border Grid.Column="2"
+                        VerticalAlignment="Top"
+                        Background="White"
+                        BorderBrush="#8ED0F9"
+                        BorderThickness="2"
+                        CornerRadius="24"
+                        Padding="22">
+
+                    <StackPanel>
+
+
+                        <!-- TOTAL -->
+
+                        <TextBlock Text="Kabuuan"
+                                   FontSize="19"
+                                   FontWeight="Bold"
+                                   Foreground="#1D3043"/>
+
+
+                        <StackPanel Margin="0,8,0,0"
+                                    Orientation="Horizontal">
+
+                            <TextBlock x:Name="TotalScoreText"
+                                       Text="0"
+                                       FontSize="43"
+                                       FontWeight="Bold"
+                                       Foreground="#0877BE"/>
+
+                            <TextBlock Text="/ 17"
+                                       Margin="6,17,0,0"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="#98A9B7"/>
+
+                        </StackPanel>
+
+
+                        <TextBlock x:Name="AnsweredCountText"
+                                   Text="0 sa 17 aytem ang namarkahan."
+                                   Margin="0,2,0,22"
+                                   FontSize="13"
+                                   Foreground="#61778A"/>
+
+
+                        <!-- =========================================
+                             TIME
+                             ========================================= -->
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="13"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <!-- MINUTES -->
+
+                            <StackPanel Grid.Column="0">
+
+                                <TextBlock Text="MINUTO"
+                                           Margin="0,0,0,7"
+                                           FontSize="11"
+                                           FontWeight="Bold"
+                                           Foreground="#91A1AF"/>
+
+
+                                <Border Height="54"
+                                        Background="#FFFEFC"
+                                        BorderBrush="#DED7CB"
+                                        BorderThickness="2"
+                                        CornerRadius="10">
+
+                                    <TextBox x:Name="MinutesTextBox"
+                                             Text="0"
+                                             Padding="14,0"
+                                             VerticalContentAlignment="Center"
+                                             FontSize="18"
+                                             FontWeight="SemiBold"
+                                             Foreground="#243A4C"
+                                             Background="Transparent"
+                                             BorderThickness="0"/>
+
+                                </Border>
+
+                            </StackPanel>
+
+
+                            <!-- SECONDS -->
+
+                            <StackPanel Grid.Column="2">
+
+                                <TextBlock Text="SEGUNDO"
+                                           Margin="0,0,0,7"
+                                           FontSize="11"
+                                           FontWeight="Bold"
+                                           Foreground="#91A1AF"/>
+
+
+                                <Border Height="54"
+                                        Background="#FFFEFC"
+                                        BorderBrush="#DED7CB"
+                                        BorderThickness="2"
+                                        CornerRadius="10">
+
+                                    <TextBox x:Name="SecondsTextBox"
+                                             Text="0"
+                                             Padding="14,0"
+                                             VerticalContentAlignment="Center"
+                                             FontSize="18"
+                                             FontWeight="SemiBold"
+                                             Foreground="#243A4C"
+                                             Background="Transparent"
+                                             BorderThickness="0"/>
+
+                                </Border>
+
+                            </StackPanel>
+
+                        </Grid>
+
+
+                        <!-- =========================================
+                             TEACHER NOTES
+                             ========================================= -->
+
+                        <TextBlock Text="PUNA NG GURO"
+                                   Margin="0,22,0,7"
+                                   FontSize="11"
+                                   FontWeight="Bold"
+                                   Foreground="#91A1AF"/>
+
+
+                        <Border Height="130"
+                                Background="#FFFEFC"
+                                BorderBrush="#DED7CB"
+                                BorderThickness="2"
+                                CornerRadius="10">
+
+                            <TextBox x:Name="TeacherNotesTextBox"
+                                     Padding="13"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     VerticalScrollBarVisibility="Auto"
+                                     VerticalContentAlignment="Top"
+                                     FontSize="13"
+                                     Foreground="#344C5C"
+                                     Background="Transparent"
+                                     BorderThickness="0"/>
+
+                        </Border>
+
+
+                        <TextBlock Margin="4,7,4,0"
+                                   Text="Halimbawa: Malinaw ang /m/, kailangan pa ng pagsasanay sa pantig."
+                                   TextWrapping="Wrap"
+                                   FontSize="11"
+                                   Foreground="#9AA8B4"/>
+
+
+                        <!-- =========================================
+                             SAVE
+                             ========================================= -->
+
+                        <Button Margin="0,25,0,0"
+                                Style="{StaticResource SaveButtonStyle}"
+                                Click="SaveButton_Click">
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <TextBlock Text="✓"
+                                           Margin="0,0,8,0"
+                                           FontSize="17"
+                                           FontWeight="Bold"
+                                           VerticalAlignment="Center"/>
+
+                                <TextBlock Text="I-save sa Check-in Record"
+                                           VerticalAlignment="Center"/>
+
+                            </StackPanel>
+
+                        </Button>
+
+                    </StackPanel>
+
+                </Border>
+
+            </Grid>
+
+        </ScrollViewer>
+
+    </Grid>
+
+</Page>

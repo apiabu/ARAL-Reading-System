@@ -1,0 +1,645 @@
+<Page x:Class="ARALReadingSystem.Views.PupilsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:models="clr-namespace:ARALReadingSystem.Models"
+      Title="Mga Mag-aaral"
+      Background="#FFF8EC">
+
+    <Page.Resources>
+
+        <!-- ================================================== -->
+        <!-- FILTER BUTTON                                      -->
+        <!-- ================================================== -->
+
+        <Style x:Key="FilterButton"
+               TargetType="Button">
+
+            <Setter Property="Height"
+                    Value="40"/>
+
+            <Setter Property="MinWidth"
+                    Value="78"/>
+
+            <Setter Property="Padding"
+                    Value="16,0"/>
+
+            <Setter Property="Margin"
+                    Value="0,0,8,0"/>
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="Foreground"
+                    Value="#5D6F80"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#DDD6CB"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontSize"
+                    Value="12"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="FilterBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="20">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="FilterBorder"
+                                        Property="BorderBrush"
+                                        Value="#1594DF"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+        <!-- ================================================== -->
+        <!-- ACTION BUTTON                                      -->
+        <!-- ================================================== -->
+
+        <Style x:Key="ActionButton"
+               TargetType="Button">
+
+            <Setter Property="Width"
+                    Value="36"/>
+
+            <Setter Property="Height"
+                    Value="36"/>
+
+            <Setter Property="Margin"
+                    Value="0,0,7,0"/>
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="Foreground"
+                    Value="#53697B"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#E1D9CE"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontSize"
+                    Value="15"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ActionBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="ActionBorder"
+                                        Property="Background"
+                                        Value="#EEF7FD"/>
+
+                                <Setter TargetName="ActionBorder"
+                                        Property="BorderBrush"
+                                        Value="#1594DF"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+        <!-- ================================================== -->
+        <!-- LIST VIEW                                          -->
+        <!-- ================================================== -->
+
+        <Style x:Key="PupilListViewStyle"
+               TargetType="ListView">
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="SelectionMode"
+                    Value="Single"/>
+
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                    Value="Disabled"/>
+
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                    Value="Auto"/>
+
+        </Style>
+
+    </Page.Resources>
+
+    <!-- ====================================================== -->
+    <!-- CONTENT ONLY                                           -->
+    <!-- Shared title/header is owned by TeacherDashboard.      -->
+    <!-- ====================================================== -->
+
+    <Grid Background="#FFF8EC"
+          Margin="33,24,32,32">
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="18"/>
+
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+
+        <!-- ================================================== -->
+        <!-- SEARCH + FILTERS                                   -->
+        <!-- ================================================== -->
+
+        <Grid Grid.Row="0">
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="270"/>
+
+                <ColumnDefinition Width="Auto"/>
+
+                <ColumnDefinition Width="*"/>
+
+                <ColumnDefinition Width="Auto"/>
+
+            </Grid.ColumnDefinitions>
+
+            <!-- SEARCH -->
+
+            <Border Grid.Column="0"
+                    Height="42"
+                    Background="White"
+                    BorderBrush="#DDD6CB"
+                    BorderThickness="1"
+                    CornerRadius="13">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+
+                        <ColumnDefinition Width="42"/>
+
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="⌕"
+                               Foreground="#94A4B2"
+                               FontSize="20"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+
+                    <Grid Grid.Column="1">
+
+                        <TextBlock x:Name="SearchPlaceholder"
+                                   Text="Hanapin ang pangalan"
+                                   Foreground="#9BA8B5"
+                                   FontSize="12"
+                                   VerticalAlignment="Center"
+                                   IsHitTestVisible="False"/>
+
+                        <TextBox x:Name="SearchTextBox"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="#172B40"
+                                 FontSize="13"
+                                 VerticalContentAlignment="Center"
+                                 TextChanged="SearchTextBox_TextChanged"/>
+
+                    </Grid>
+
+                </Grid>
+
+            </Border>
+
+            <!-- FILTERS -->
+
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        Margin="13,0,0,0">
+
+                <Button x:Name="AllFilterButton"
+                        Content="Lahat"
+                        Style="{StaticResource FilterButton}"
+                        Background="#1594DF"
+                        Foreground="White"
+                        BorderBrush="#1594DF"
+                        Click="AllFilterButton_Click"/>
+
+                <Button x:Name="Grade1FilterButton"
+                        Content="Grade 1"
+                        Style="{StaticResource FilterButton}"
+                        Click="Grade1FilterButton_Click"/>
+
+                <Button x:Name="Grade2FilterButton"
+                        Content="Grade 2"
+                        Style="{StaticResource FilterButton}"
+                        Click="Grade2FilterButton_Click"/>
+
+            </StackPanel>
+
+            <!-- COUNT -->
+
+            <TextBlock x:Name="PupilCountText"
+                       Grid.Column="3"
+                       Text="0 nga mag-aaral"
+                       Foreground="#81909F"
+                       FontSize="12"
+                       VerticalAlignment="Center"/>
+
+        </Grid>
+
+        <!-- ================================================== -->
+        <!-- LIST AREA                                          -->
+        <!-- ================================================== -->
+
+        <Grid Grid.Row="2">
+
+            <!-- EMPTY STATE -->
+
+            <Border x:Name="EmptyState"
+                    Background="White"
+                    BorderBrush="#E4DCCF"
+                    BorderThickness="1"
+                    CornerRadius="22"
+                    Visibility="Collapsed">
+
+                <StackPanel HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+
+                    <Border Width="68"
+                            Height="68"
+                            Background="#E3F3FC"
+                            CornerRadius="34">
+
+                        <TextBlock Text="♙"
+                                   Foreground="#1594DF"
+                                   FontSize="30"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                    </Border>
+
+                    <TextBlock Text="Waray pa mag-aaral"
+                               Foreground="#172B40"
+                               FontSize="19"
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Margin="0,14,0,0"/>
+
+                    <TextBlock Text="Pagdugang hin mag-aaral basi makagtikang han reading intervention."
+                               Foreground="#82919E"
+                               FontSize="12"
+                               TextAlignment="Center"
+                               Margin="0,6,0,0"/>
+
+                </StackPanel>
+
+            </Border>
+
+            <!-- ================================================== -->
+            <!-- PUPIL TABLE                                        -->
+            <!-- ================================================== -->
+
+            <Border x:Name="PupilTable"
+                    Background="White"
+                    BorderBrush="#E4DCCF"
+                    BorderThickness="1"
+                    CornerRadius="22"
+                    ClipToBounds="True">
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="46"/>
+
+                        <RowDefinition Height="*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <!-- TABLE HEADER -->
+
+                    <Border Grid.Row="0"
+                            Background="#FFF9EF"
+                            BorderBrush="#E8E0D5"
+                            BorderThickness="0,0,0,1">
+
+                        <Grid Margin="20,0">
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="2.2*"/>
+
+                                <ColumnDefinition Width="1.05*"/>
+
+                                <ColumnDefinition Width="1.55*"/>
+
+                                <ColumnDefinition Width="1.85*"/>
+
+                                <ColumnDefinition Width="1.15*"/>
+
+                                <ColumnDefinition Width="135"/>
+
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0"
+                                       Text="PANGALAN"
+                                       Foreground="#94A2B0"
+                                       FontSize="10"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Text="COHORT"
+                                       Foreground="#94A2B0"
+                                       FontSize="10"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="2"
+                                       Text="EDAD / KASARIAN"
+                                       Foreground="#94A2B0"
+                                       FontSize="10"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="3"
+                                       Text="TAGAPAG-ALAGA"
+                                       Foreground="#94A2B0"
+                                       FontSize="10"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="4"
+                                       Text="CHECK-IN"
+                                       Foreground="#94A2B0"
+                                       FontSize="10"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="5"
+                                       Text="AKSYON"
+                                       Foreground="#94A2B0"
+                                       FontSize="10"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+
+                        </Grid>
+
+                    </Border>
+
+                    <!-- PUPIL LIST -->
+
+                    <ListView x:Name="PupilsListView"
+                              Grid.Row="1"
+                              Style="{StaticResource PupilListViewStyle}">
+
+                        <ListView.ItemContainerStyle>
+
+                            <Style TargetType="ListViewItem">
+
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Stretch"/>
+
+                                <Setter Property="VerticalContentAlignment"
+                                        Value="Stretch"/>
+
+                                <Setter Property="Padding"
+                                        Value="0"/>
+
+                                <Setter Property="Margin"
+                                        Value="0"/>
+
+                                <Setter Property="BorderThickness"
+                                        Value="0"/>
+
+                                <Setter Property="Background"
+                                        Value="Transparent"/>
+
+                                <Setter Property="Focusable"
+                                        Value="False"/>
+
+                                <Setter Property="Template">
+
+                                    <Setter.Value>
+
+                                        <ControlTemplate TargetType="ListViewItem">
+
+                                            <ContentPresenter/>
+
+                                        </ControlTemplate>
+
+                                    </Setter.Value>
+
+                                </Setter>
+
+                            </Style>
+
+                        </ListView.ItemContainerStyle>
+
+                        <ListView.ItemTemplate>
+
+                            <DataTemplate DataType="{x:Type models:Pupil}">
+
+                                <Border MinHeight="74"
+                                        Background="White"
+                                        BorderBrush="#ECE5DB"
+                                        BorderThickness="0,0,0,1">
+
+                                    <Grid Margin="20,0">
+
+                                        <Grid.ColumnDefinitions>
+
+                                            <ColumnDefinition Width="2.2*"/>
+
+                                            <ColumnDefinition Width="1.05*"/>
+
+                                            <ColumnDefinition Width="1.55*"/>
+
+                                            <ColumnDefinition Width="1.85*"/>
+
+                                            <ColumnDefinition Width="1.15*"/>
+
+                                            <ColumnDefinition Width="135"/>
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- NAME -->
+
+                                        <StackPanel Grid.Column="0"
+                                                    VerticalAlignment="Center">
+
+                                            <TextBlock Text="{Binding FullName}"
+                                                       Foreground="#172B40"
+                                                       FontSize="14"
+                                                       FontWeight="Bold"/>
+
+                                            <TextBlock Text="{Binding RegistrationText}"
+                                                       Foreground="#9AA8B5"
+                                                       FontSize="10"
+                                                       Margin="0,4,0,0"/>
+
+                                        </StackPanel>
+
+                                        <!-- COHORT -->
+
+                                        <Border Grid.Column="1"
+                                                Background="#DDF1FD"
+                                                CornerRadius="13"
+                                                Padding="10,5"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center">
+
+                                            <TextBlock Text="{Binding GradeLevel}"
+                                                       Foreground="#0874B5"
+                                                       FontSize="11"
+                                                       FontWeight="SemiBold"/>
+
+                                        </Border>
+
+                                        <!-- AGE / SEX -->
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding AgeSexText}"
+                                                   Foreground="#43586D"
+                                                   FontSize="12"
+                                                   VerticalAlignment="Center"/>
+
+                                        <!-- GUARDIAN -->
+
+                                        <TextBlock Grid.Column="3"
+                                                   Text="{Binding GuardianName}"
+                                                   Foreground="#43586D"
+                                                   FontSize="12"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0,0,12,0"/>
+
+                                        <!-- CHECK-IN -->
+
+                                        <Border Grid.Column="4"
+                                                Background="#F1F8FC"
+                                                CornerRadius="12"
+                                                Padding="10,5"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center">
+
+                                            <TextBlock Text="{Binding CheckInText}"
+                                                       Foreground="#296B93"
+                                                       FontSize="11"
+                                                       FontWeight="SemiBold"/>
+
+                                        </Border>
+
+                                        <!-- ACTIONS -->
+
+                                        <StackPanel Grid.Column="5"
+                                                    Orientation="Horizontal"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center">
+
+                                            <Button Content="▣"
+                                                    ToolTip="Buksan ang profile"
+                                                    Style="{StaticResource ActionButton}"
+                                                    Tag="{Binding}"
+                                                    Click="OpenPupilButton_Click"/>
+
+                                            <Button Content="✎"
+                                                    ToolTip="I-edit"
+                                                    Style="{StaticResource ActionButton}"
+                                                    Tag="{Binding}"
+                                                    Click="EditPupilButton_Click"/>
+
+                                            <Button Content="×"
+                                                    ToolTip="Tanggalin"
+                                                    Style="{StaticResource ActionButton}"
+                                                    Foreground="#C05B5B"
+                                                    Tag="{Binding}"
+                                                    Click="DeletePupilButton_Click"
+                                                    Margin="0"/>
+
+                                        </StackPanel>
+
+                                    </Grid>
+
+                                </Border>
+
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+
+                </Grid>
+
+            </Border>
+
+        </Grid>
+
+    </Grid>
+
+</Page>

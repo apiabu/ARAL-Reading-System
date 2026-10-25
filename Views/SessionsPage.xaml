@@ -1,0 +1,149 @@
+<Page x:Class="ARALReadingSystem.Views.SessionsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#FFF8EC"
+      Loaded="Page_Loaded">
+
+    <Page.Resources>
+
+        <!-- Session Card -->
+        <Style x:Key="SessionCardStyle"
+               TargetType="Border">
+            <Setter Property="Background"
+                    Value="White"/>
+            <Setter Property="CornerRadius"
+                    Value="24"/>
+            <Setter Property="BorderBrush"
+                    Value="#E4DED3"/>
+            <Setter Property="BorderThickness"
+                    Value="1.5"/>
+            <Setter Property="Padding"
+                    Value="20"/>
+            <Setter Property="Margin"
+                    Value="0,0,16,16"/>
+        </Style>
+
+        <!-- Main Blue Button -->
+        <Style x:Key="BlueButtonStyle"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="#1594DF"/>
+            <Setter Property="Foreground"
+                    Value="White"/>
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+            <Setter Property="FontSize"
+                    Value="14"/>
+            <Setter Property="Padding"
+                    Value="18,11"/>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="13"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Session Action Button -->
+        <Style x:Key="SessionActionButtonStyle"
+               TargetType="Button">
+            <Setter Property="Height"
+                    Value="48"/>
+            <Setter Property="Background"
+                    Value="White"/>
+            <Setter Property="Foreground"
+                    Value="#075F9A"/>
+            <Setter Property="BorderBrush"
+                    Value="#8FD0FF"/>
+            <Setter Property="BorderThickness"
+                    Value="2"/>
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+            <Setter Property="FontSize"
+                    Value="14"/>
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="13">
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+
+            <StackPanel Margin="32,22,16,30">
+
+                <!-- TOP INFORMATION -->
+                <Grid Margin="0,0,16,22">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="ResumeButton"
+                            Grid.Column="0"
+                            Style="{StaticResource BlueButtonStyle}"
+                            Content="▣  Ipagpatuloy an Sesyon 1"
+                            Click="ResumeButton_Click"/>
+
+                    <StackPanel Grid.Column="2"
+                                VerticalAlignment="Center"
+                                Margin="25,0,5,0">
+
+                        <TextBlock x:Name="PupilNameText"
+                                   Text="Mag-aaral"
+                                   FontWeight="SemiBold"
+                                   FontSize="14"
+                                   Foreground="#26394C"
+                                   HorizontalAlignment="Right"/>
+
+                        <TextBlock x:Name="PupilProgressText"
+                                   Text="0 han 36 nga sesyon"
+                                   Margin="0,3,0,0"
+                                   FontSize="12"
+                                   Foreground="#93A2B1"
+                                   HorizontalAlignment="Right"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <!-- SESSION CARDS GENERATED HERE -->
+                <WrapPanel x:Name="SessionsPanel"
+                           HorizontalAlignment="Left"/>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+    </Grid>
+
+</Page>

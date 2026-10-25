@@ -1,0 +1,1574 @@
+<Page x:Class="ARALReadingSystem.Views.InstructionalSessionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#FFF8EC">
+
+    <Page.Resources>
+
+        <!-- =====================================================
+             PRIMARY BUTTON
+             ===================================================== -->
+
+        <Style x:Key="PrimaryButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Background"
+                    Value="#1594DF"/>
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="FontSize"
+                    Value="15"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Padding"
+                    Value="24,12"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                Padding="{TemplateBinding Padding}">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity"
+                                        Value="0.88"/>
+
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Opacity"
+                                        Value="0.45"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+
+        <!-- =====================================================
+             SECONDARY BUTTON
+             ===================================================== -->
+
+        <Style x:Key="SecondaryButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="Foreground"
+                    Value="#183149"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#DED8CD"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Padding"
+                    Value="20,11"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                Padding="{TemplateBinding Padding}">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#F7F9FB"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+
+        <!-- =====================================================
+             TOOL BUTTON
+             ===================================================== -->
+
+        <Style x:Key="ToolButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="Foreground"
+                    Value="#183149"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#DED8CD"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="Padding"
+                    Value="14,8"/>
+
+            <Setter Property="Margin"
+                    Value="0,0,8,0"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+        </Style>
+
+
+        <!-- =====================================================
+             TEXTBOX
+             ===================================================== -->
+
+        <Style x:Key="LessonTextBoxStyle"
+               TargetType="TextBox">
+
+            <Setter Property="Height"
+                    Value="54"/>
+
+            <Setter Property="FontSize"
+                    Value="18"/>
+
+            <Setter Property="Foreground"
+                    Value="#183149"/>
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#DDD7CC"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="Padding"
+                    Value="15,10"/>
+
+            <Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+
+        </Style>
+
+    </Page.Resources>
+
+
+    <!-- =========================================================
+         ROOT
+         ========================================================= -->
+
+    <Grid Background="#FFF8EC">
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="86"/>
+
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="82"/>
+
+        </Grid.RowDefinitions>
+
+
+        <!-- =====================================================
+             HEADER
+             ===================================================== -->
+
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#ECE8E0"
+                BorderThickness="0,0,0,1">
+
+            <Grid Margin="28,0">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="Auto"/>
+
+                    <ColumnDefinition Width="*"/>
+
+                    <ColumnDefinition Width="Auto"/>
+
+                    <ColumnDefinition Width="Auto"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <Button Grid.Column="0"
+                        Width="44"
+                        Height="44"
+                        Padding="0"
+                        Margin="0,0,18,0"
+                        VerticalAlignment="Center"
+                        ToolTip="Lumabas sa sesyon"
+                        AutomationProperties.Name="Lumabas sa sesyon"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Click="CloseButton_Click">
+
+                    <TextBlock Text="✕"
+                               FontSize="18"
+                               FontWeight="Bold"/>
+
+                </Button>
+
+
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Center">
+
+                    <TextBlock x:Name="HeaderSessionTitleText"
+                               Text="Sesyon"
+                               FontSize="19"
+                               FontWeight="Bold"
+                               Foreground="#183149"/>
+
+                    <TextBlock x:Name="HeaderStepText"
+                               Text="PAMBUNGAD · 1 SA 5"
+                               Margin="0,4,0,0"
+                               FontSize="11"
+                               FontWeight="Bold"
+                               Foreground="#7C8D9B"/>
+
+                </StackPanel>
+
+
+                <Border Grid.Column="2"
+                        Margin="20,0,25,0"
+                        Padding="14,9"
+                        Background="#FFF4DB"
+                        CornerRadius="18"
+                        VerticalAlignment="Center">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="🔊"
+                                   FontSize="15"
+                                   Margin="0,0,7,0"/>
+
+                        <TextBlock Text="Voiceover: Ninorte-Samarnon"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Foreground="#755C29"
+                                   VerticalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Border>
+
+
+                <StackPanel Grid.Column="3"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+
+                    <Border x:Name="ProgressDot1"
+                            Width="28"
+                            Height="10"
+                            Margin="3"
+                            CornerRadius="5"
+                            Background="#1594DF"/>
+
+                    <Border x:Name="ProgressDot2"
+                            Width="10"
+                            Height="10"
+                            Margin="3"
+                            CornerRadius="5"
+                            Background="#DED8CD"/>
+
+                    <Border x:Name="ProgressDot3"
+                            Width="10"
+                            Height="10"
+                            Margin="3"
+                            CornerRadius="5"
+                            Background="#DED8CD"/>
+
+                    <Border x:Name="ProgressDot4"
+                            Width="10"
+                            Height="10"
+                            Margin="3"
+                            CornerRadius="5"
+                            Background="#DED8CD"/>
+
+                    <Border x:Name="ProgressDot5"
+                            Width="10"
+                            Height="10"
+                            Margin="3"
+                            CornerRadius="5"
+                            Background="#DED8CD"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+
+        <!-- =====================================================
+             LESSON CONTENT
+             ===================================================== -->
+
+        <Grid Grid.Row="1"
+              Background="#FFF8EC">
+
+
+            <!-- =================================================
+                 INTRODUCTION
+                 ================================================= -->
+
+            <Grid x:Name="IntroductionPanel">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel Width="760"
+                                Margin="40"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+
+                        <Border Background="#FFE4A3"
+                                CornerRadius="20"
+                                Padding="18,8"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock Text="Pagkilala"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#A66B00"/>
+
+                        </Border>
+
+
+                        <TextBlock x:Name="IntroductionTitleText"
+                                   Text="Sesyon"
+                                   Margin="0,20,0,0"
+                                   FontSize="38"
+                                   FontWeight="Bold"
+                                   Foreground="#183149"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <TextBlock x:Name="IntroductionInstructionText"
+                                   Margin="0,12,0,0"
+                                   FontSize="18"
+                                   Foreground="#60798E"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <StackPanel Margin="0,35,0,0"
+                                    HorizontalAlignment="Center">
+
+                            <Border Width="200"
+                                    Height="200"
+                                    CornerRadius="100"
+                                    Background="#DDF3FD">
+
+                                <TextBlock Text="🐦"
+                                           FontSize="68"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+
+                            </Border>
+
+                            <Border Background="White"
+                                    CornerRadius="16"
+                                    Padding="14,9"
+                                    Margin="0,12,0,0"
+                                    HorizontalAlignment="Center">
+
+                                <TextBlock x:Name="IntroductionPromptText"
+                                           Text="Magbasa kita, mga bata!"
+                                           MaxWidth="220"
+                                           FontSize="13"
+                                           FontWeight="SemiBold"
+                                           Foreground="#183149"
+                                           TextAlignment="Center"
+                                           TextWrapping="Wrap"
+                                           LineHeight="18"/>
+
+                            </Border>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+
+            <!-- =================================================
+                 SESSION 1 DRAWING
+                 ================================================= -->
+
+            <Grid x:Name="DrawingPanel"
+                  Visibility="Collapsed">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel Width="820"
+                                Margin="40,28"
+                                HorizontalAlignment="Center">
+
+                        <Border Background="#FFE4A3"
+                                CornerRadius="20"
+                                Padding="18,8"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock Text="Pagguhit"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#A66B00"/>
+
+                        </Border>
+
+
+                        <TextBlock x:Name="DrawingTitleText"
+                                   Margin="0,15,0,0"
+                                   FontSize="30"
+                                   FontWeight="Bold"
+                                   Foreground="#183149"
+                                   TextAlignment="Center"/>
+
+
+                        <TextBlock x:Name="DrawingInstructionText"
+                                   Margin="0,8,0,18"
+                                   MaxWidth="720"
+                                   FontSize="15"
+                                   Foreground="#60798E"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,0,12">
+
+                            <Button Content="✏  Gumuhit"
+                                    Style="{StaticResource ToolButtonStyle}"
+                                    Click="DrawToolButton_Click"/>
+
+                            <Button Content="⌫  Burahin"
+                                    Style="{StaticResource ToolButtonStyle}"
+                                    Click="EraserToolButton_Click"/>
+
+                            <Button Content="↻  Linisin"
+                                    Style="{StaticResource ToolButtonStyle}"
+                                    Click="ClearDrawingButton_Click"/>
+
+                        </StackPanel>
+
+
+                        <Border Height="360"
+                                Background="White"
+                                BorderBrush="#D9D2C6"
+                                BorderThickness="2"
+                                CornerRadius="18">
+
+                            <InkCanvas x:Name="SelfDrawingCanvas"
+                                       Background="Transparent"
+                                       EditingMode="Ink"/>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+
+            <!-- =================================================
+                 SESSION 1 NAME
+                 ================================================= -->
+
+            <Grid x:Name="NamePanel"
+                  Visibility="Collapsed">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel Width="680"
+                                Margin="40"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+
+                        <Border Background="#DDF3FD"
+                                CornerRadius="20"
+                                Padding="18,8"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock Text="Pagkilala"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#0879BC"/>
+
+                        </Border>
+
+
+                        <TextBlock x:Name="NameTitleText"
+                                   Margin="0,18,0,0"
+                                   FontSize="34"
+                                   FontWeight="Bold"
+                                   Foreground="#183149"
+                                   TextAlignment="Center"/>
+
+
+                        <TextBlock x:Name="NameInstructionText"
+                                   Margin="0,8,0,25"
+                                   FontSize="16"
+                                   Foreground="#60798E"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <Border Background="White"
+                                CornerRadius="20"
+                                BorderBrush="#E4DED4"
+                                BorderThickness="1"
+                                Padding="30">
+
+                            <StackPanel>
+
+                                <TextBlock Text="Ako si"
+                                           FontSize="18"
+                                           FontWeight="SemiBold"
+                                           Foreground="#183149"
+                                           Margin="0,0,0,10"/>
+
+                                <TextBox x:Name="LearnerNameTextBox"
+                                         Style="{StaticResource LessonTextBoxStyle}"
+                                         TextChanged="LearnerNameTextBox_TextChanged"/>
+
+                                <TextBlock x:Name="NameValidationText"
+                                           Text="Ibutang anay an ngaran."
+                                           Foreground="#C63D35"
+                                           FontSize="12"
+                                           FontWeight="SemiBold"
+                                           Margin="3,8,0,0"
+                                           Visibility="Collapsed"/>
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+
+            <!-- =================================================
+                 SESSION 1 INTEREST
+                 ================================================= -->
+
+            <Grid x:Name="InterestPanel"
+                  Visibility="Collapsed">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel Width="680"
+                                Margin="40"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+
+                        <Border Background="#DDF3FD"
+                                CornerRadius="20"
+                                Padding="18,8"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock Text="Pagkilala"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#0879BC"/>
+
+                        </Border>
+
+
+                        <TextBlock x:Name="InterestTitleText"
+                                   Margin="0,18,0,0"
+                                   FontSize="34"
+                                   FontWeight="Bold"
+                                   Foreground="#183149"
+                                   TextAlignment="Center"/>
+
+
+                        <TextBlock x:Name="InterestInstructionText"
+                                   Margin="0,8,0,25"
+                                   FontSize="16"
+                                   Foreground="#60798E"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <Border Background="White"
+                                CornerRadius="20"
+                                BorderBrush="#E4DED4"
+                                BorderThickness="1"
+                                Padding="30">
+
+                            <StackPanel>
+
+                                <TextBlock Text="Mahilig ako mag/sa"
+                                           FontSize="18"
+                                           FontWeight="SemiBold"
+                                           Foreground="#183149"
+                                           Margin="0,0,0,10"/>
+
+                                <TextBox x:Name="LearnerInterestTextBox"
+                                         Style="{StaticResource LessonTextBoxStyle}"
+                                         TextChanged="LearnerInterestTextBox_TextChanged"/>
+
+                                <TextBlock x:Name="InterestValidationText"
+                                           Text="Ibutang anay an hilig."
+                                           Foreground="#C63D35"
+                                           FontSize="12"
+                                           FontWeight="SemiBold"
+                                           Margin="3,8,0,0"
+                                           Visibility="Collapsed"/>
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+
+            <!-- =================================================
+                 SESSION 2 RULES
+                 ================================================= -->
+
+            <Grid x:Name="RulesPanel"
+                  Visibility="Collapsed">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel Width="820"
+                                Margin="40,28"
+                                HorizontalAlignment="Center">
+
+                        <Border Background="#FFE4A3"
+                                CornerRadius="20"
+                                Padding="18,8"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock Text="Mga Tuntunin"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#A66B00"/>
+
+                        </Border>
+
+
+                        <TextBlock x:Name="RulesTitleText"
+                                   Margin="0,18,0,0"
+                                   FontSize="34"
+                                   FontWeight="Bold"
+                                   Foreground="#183149"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+
+                        <TextBlock x:Name="RulesInstructionText"
+                                   Margin="0,9,0,25"
+                                   MaxWidth="720"
+                                   FontSize="16"
+                                   Foreground="#60798E"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <StackPanel x:Name="RulesItemsPanel"/>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+
+            <!-- =================================================
+                 SESSION 2 CHOICE ACTIVITY
+                 ================================================= -->
+
+            <Grid x:Name="ChoiceActivityPanel"
+                  Visibility="Collapsed">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel Width="900"
+                                Margin="40,25"
+                                HorizontalAlignment="Center">
+
+                        <Border Background="#DDF3FD"
+                                CornerRadius="20"
+                                Padding="18,8"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock Text="Gawain 1"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#0879BC"/>
+
+                        </Border>
+
+
+                        <TextBlock x:Name="ChoiceTitleText"
+                                   Margin="0,16,0,0"
+                                   FontSize="30"
+                                   FontWeight="Bold"
+                                   Foreground="#183149"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+
+                        <TextBlock x:Name="ChoiceInstructionText"
+                                   Margin="0,8,0,18"
+                                   MaxWidth="760"
+                                   FontSize="15"
+                                   Foreground="#60798E"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <WrapPanel x:Name="ChoiceItemsPanel"
+                                   HorizontalAlignment="Center"/>
+
+
+                        <Border x:Name="ChoiceValidationBorder"
+                                Background="#FFF0ED"
+                                CornerRadius="10"
+                                Padding="14,9"
+                                Margin="0,15,0,0"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock x:Name="ChoiceValidationText"
+                                       Text="Tubaga anay an ngatanan nga sitwasyon."
+                                       Foreground="#C63D35"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       TextAlignment="Center"
+                                       Visibility="Collapsed"/>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+
+            <!-- =================================================
+                 SESSION 3 HAND COLORING
+                 ================================================= -->
+
+            <Grid x:Name="HandColoringPanel"
+                  Visibility="Collapsed">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel Width="900"
+                                Margin="30,20"
+                                HorizontalAlignment="Center">
+
+
+                        <Border Background="#FFE4A3"
+                                CornerRadius="20"
+                                Padding="18,8"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock x:Name="HandSectionBadgeText"
+                                       Text="Gawain 1"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#A66B00"/>
+
+                        </Border>
+
+
+                        <TextBlock x:Name="HandColoringTitleText"
+                                   Text="Kulayan ang mga kamay"
+                                   Margin="0,14,0,0"
+                                   FontSize="31"
+                                   FontWeight="Bold"
+                                   Foreground="#183149"
+                                   TextAlignment="Center"/>
+
+
+                        <TextBlock x:Name="HandColoringInstructionText"
+                                   Margin="0,8,0,8"
+                                   MaxWidth="760"
+                                   FontSize="16"
+                                   Foreground="#60798E"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <TextBlock x:Name="HandColoringPromptText"
+                                   Margin="0,0,0,18"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Foreground="#8A765D"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <!-- HANDS -->
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+
+                                <ColumnDefinition Width="*"/>
+
+                                <ColumnDefinition Width="30"/>
+
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+
+
+                            <!-- LEFT HAND -->
+
+                            <Border Grid.Column="0"
+                                    Background="White"
+                                    BorderBrush="#E5DED2"
+                                    BorderThickness="1"
+                                    CornerRadius="22"
+                                    Padding="20">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="KALIWANG KAMAY"
+                                               HorizontalAlignment="Center"
+                                               FontSize="13"
+                                               FontWeight="Bold"
+                                               Foreground="#C64545"/>
+
+
+                                    <Viewbox Height="220"
+                                             Margin="20,10">
+
+                                        <Canvas Width="220"
+                                                Height="250">
+
+                                            <Path x:Name="LeftHandShape"
+                                                  Cursor="Hand"
+                                                  Fill="White"
+                                                  Stroke="#183149"
+                                                  StrokeThickness="5"
+                                                  StrokeLineJoin="Round"
+                                                  MouseLeftButtonUp="LeftHandShape_MouseLeftButtonUp"
+                                                  Data="M 75,230
+                                                        L 55,175
+                                                        L 28,132
+                                                        C 20,120 24,107 34,104
+                                                        C 43,101 49,108 55,116
+                                                        L 70,136
+                                                        L 60,62
+                                                        C 59,49 66,41 76,42
+                                                        C 86,43 89,51 90,62
+                                                        L 94,119
+                                                        L 96,36
+                                                        C 96,23 104,16 114,17
+                                                        C 124,18 127,27 126,38
+                                                        L 124,117
+                                                        L 132,45
+                                                        C 133,33 141,27 151,29
+                                                        C 160,31 163,39 161,50
+                                                        L 153,125
+                                                        L 165,71
+                                                        C 168,60 176,55 185,58
+                                                        C 194,61 196,70 193,81
+                                                        L 179,143
+                                                        L 196,125
+                                                        C 205,116 217,116 223,123
+                                                        C 230,131 227,141 220,149
+                                                        L 184,190
+                                                        C 172,204 166,219 165,230
+                                                        Z"/>
+
+                                        </Canvas>
+
+                                    </Viewbox>
+
+
+                                    <TextBlock Text="Kaliwa"
+                                               FontSize="22"
+                                               FontWeight="Bold"
+                                               Foreground="#183149"
+                                               HorizontalAlignment="Center"/>
+
+
+                                    <Button x:Name="LeftRedButton"
+                                            Content="🔴  Kulayan ng Pula"
+                                            Margin="30,12,30,0"
+                                            Height="45"
+                                            Background="#FDE8E6"
+                                            Foreground="#B73832"
+                                            BorderBrush="#F1B8B4"
+                                            BorderThickness="1"
+                                            FontWeight="SemiBold"
+                                            Cursor="Hand"
+                                            Click="LeftRedButton_Click"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+
+                            <!-- RIGHT HAND -->
+
+                            <Border Grid.Column="2"
+                                    Background="White"
+                                    BorderBrush="#E5DED2"
+                                    BorderThickness="1"
+                                    CornerRadius="22"
+                                    Padding="20">
+
+                                <StackPanel>
+
+                                    <TextBlock Text="KANANG KAMAY"
+                                               HorizontalAlignment="Center"
+                                               FontSize="13"
+                                               FontWeight="Bold"
+                                               Foreground="#177DB7"/>
+
+
+                                    <Viewbox Height="220"
+                                             Margin="20,10">
+
+                                        <Canvas Width="220"
+                                                Height="250">
+
+                                            <Path x:Name="RightHandShape"
+                                                  Cursor="Hand"
+                                                  Fill="White"
+                                                  Stroke="#183149"
+                                                  StrokeThickness="5"
+                                                  StrokeLineJoin="Round"
+                                                  RenderTransformOrigin="0.5,0.5"
+                                                  MouseLeftButtonUp="RightHandShape_MouseLeftButtonUp"
+                                                  Data="M 75,230
+                                                        L 55,175
+                                                        L 28,132
+                                                        C 20,120 24,107 34,104
+                                                        C 43,101 49,108 55,116
+                                                        L 70,136
+                                                        L 60,62
+                                                        C 59,49 66,41 76,42
+                                                        C 86,43 89,51 90,62
+                                                        L 94,119
+                                                        L 96,36
+                                                        C 96,23 104,16 114,17
+                                                        C 124,18 127,27 126,38
+                                                        L 124,117
+                                                        L 132,45
+                                                        C 133,33 141,27 151,29
+                                                        C 160,31 163,39 161,50
+                                                        L 153,125
+                                                        L 165,71
+                                                        C 168,60 176,55 185,58
+                                                        C 194,61 196,70 193,81
+                                                        L 179,143
+                                                        L 196,125
+                                                        C 205,116 217,116 223,123
+                                                        C 230,131 227,141 220,149
+                                                        L 184,190
+                                                        C 172,204 166,219 165,230
+                                                        Z">
+
+                                                <Path.RenderTransform>
+
+                                                    <ScaleTransform ScaleX="-1"/>
+
+                                                </Path.RenderTransform>
+
+                                            </Path>
+
+                                        </Canvas>
+
+                                    </Viewbox>
+
+
+                                    <TextBlock Text="Kanan"
+                                               FontSize="22"
+                                               FontWeight="Bold"
+                                               Foreground="#183149"
+                                               HorizontalAlignment="Center"/>
+
+
+                                    <Button x:Name="RightBlueButton"
+                                            Content="🔵  Kulayan ng Asul"
+                                            Margin="30,12,30,0"
+                                            Height="45"
+                                            Background="#E5F4FC"
+                                            Foreground="#0879BC"
+                                            BorderBrush="#A9D9F1"
+                                            BorderThickness="1"
+                                            FontWeight="SemiBold"
+                                            Cursor="Hand"
+                                            Click="RightBlueButton_Click"/>
+
+                                </StackPanel>
+
+                            </Border>
+
+                        </Grid>
+
+
+                        <Border x:Name="HandValidationBorder"
+                                Background="#FFF0ED"
+                                CornerRadius="10"
+                                Padding="14,9"
+                                Margin="0,15,0,0"
+                                HorizontalAlignment="Center"
+                                Visibility="Collapsed">
+
+                            <TextBlock x:Name="HandValidationText"
+                                       Foreground="#C63D35"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       TextAlignment="Center"/>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+
+            <!-- =================================================
+                 SESSION 3 HOME REINFORCEMENT
+                 ================================================= -->
+
+            <Grid x:Name="HomeReinforcementPanel"
+                  Visibility="Collapsed">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel Width="820"
+                                Margin="35,22"
+                                HorizontalAlignment="Center">
+
+
+                        <Border Background="#135B8D"
+                                CornerRadius="18"
+                                Padding="18,8"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock Text="🏠  Pagtitibay sa Bahay"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="White"/>
+
+                        </Border>
+
+
+                        <TextBlock x:Name="HomeTitleText"
+                                   Margin="0,16,0,0"
+                                   FontSize="30"
+                                   FontWeight="Bold"
+                                   Foreground="#183149"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <TextBlock x:Name="HomeInstructionText"
+                                   Margin="0,10,0,20"
+                                   MaxWidth="760"
+                                   FontSize="16"
+                                   Foreground="#60798E"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+
+                        <!-- DINING AREA VISUAL -->
+
+                        <Border Background="White"
+                                BorderBrush="#DDD6CA"
+                                BorderThickness="2"
+                                CornerRadius="20"
+                                Padding="25">
+
+                            <Grid Height="280">
+
+                                <Grid.ColumnDefinitions>
+
+                                    <ColumnDefinition Width="*"/>
+
+                                    <ColumnDefinition Width="220"/>
+
+                                    <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+
+
+                                <!-- LEFT -->
+
+                                <StackPanel Grid.Column="0"
+                                            VerticalAlignment="Center">
+
+                                    <TextBlock Text="←"
+                                               FontSize="42"
+                                               FontWeight="Bold"
+                                               Foreground="#D94B45"
+                                               HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="KALIWA"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               Foreground="#D94B45"
+                                               HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="3 bagay"
+                                               Margin="0,5,0,0"
+                                               Foreground="#60798E"
+                                               HorizontalAlignment="Center"/>
+
+                                </StackPanel>
+
+
+                                <!-- TABLE -->
+
+                                <Grid Grid.Column="1"
+                                      VerticalAlignment="Center">
+
+                                    <StackPanel>
+
+                                        <TextBlock Text="🍽"
+                                                   FontSize="85"
+                                                   HorizontalAlignment="Center"/>
+
+                                        <Border Background="#FFF4DB"
+                                                CornerRadius="12"
+                                                Padding="12,7">
+
+                                            <TextBlock Text="Kainan"
+                                                       FontSize="16"
+                                                       FontWeight="Bold"
+                                                       Foreground="#755C29"
+                                                       HorizontalAlignment="Center"/>
+
+                                        </Border>
+
+                                    </StackPanel>
+
+                                </Grid>
+
+
+                                <!-- RIGHT -->
+
+                                <StackPanel Grid.Column="2"
+                                            VerticalAlignment="Center">
+
+                                    <TextBlock Text="→"
+                                               FontSize="42"
+                                               FontWeight="Bold"
+                                               Foreground="#1594DF"
+                                               HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="KANAN"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               Foreground="#1594DF"
+                                               HorizontalAlignment="Center"/>
+
+                                    <TextBlock Text="3 bagay"
+                                               Margin="0,5,0,0"
+                                               Foreground="#60798E"
+                                               HorizontalAlignment="Center"/>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Border>
+
+
+                        <Border Margin="0,18,0,0"
+                                Background="#EAF6FD"
+                                CornerRadius="14"
+                                Padding="18">
+
+                            <TextBlock x:Name="HomePromptText"
+                                       FontSize="14"
+                                       Foreground="#27536F"
+                                       FontWeight="SemiBold"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"/>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+
+            <!-- =================================================
+                 REVIEW / FINISH
+                 ================================================= -->
+
+            <Grid x:Name="ReviewPanel"
+                  Visibility="Collapsed">
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <StackPanel Width="780"
+                                Margin="40,25"
+                                HorizontalAlignment="Center">
+
+
+                        <Border Background="#DFF5E7"
+                                CornerRadius="20"
+                                Padding="18,8"
+                                HorizontalAlignment="Center">
+
+                            <TextBlock Text="Pagtapos"
+                                       FontSize="13"
+                                       FontWeight="Bold"
+                                       Foreground="#168552"/>
+
+                        </Border>
+
+
+                        <TextBlock x:Name="ReviewTitleText"
+                                   Text="Maupay!"
+                                   Margin="0,16,0,0"
+                                   FontSize="36"
+                                   FontWeight="Bold"
+                                   Foreground="#183149"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"/>
+
+
+                        <TextBlock x:Name="ReviewInstructionText"
+                                   Margin="0,8,0,22"
+                                   FontSize="16"
+                                   Foreground="#60798E"
+                                   HorizontalAlignment="Center"
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap"/>
+
+                        <Border Background="#EAF6FD"
+                                BorderBrush="#B8DFF3"
+                                BorderThickness="1"
+                                CornerRadius="16"
+                                Padding="18"
+                                Margin="0,0,0,18">
+
+                            <TextBlock x:Name="ReviewActivityResultText"
+                                       FontSize="18"
+                                       FontWeight="SemiBold"
+                                       Foreground="#183149"
+                                       TextAlignment="Center"
+                                       TextWrapping="Wrap"/>
+
+                        </Border>
+
+                        <Border Background="White"
+                                BorderBrush="#E4DED4"
+                                BorderThickness="1"
+                                CornerRadius="20"
+                                Padding="25">
+
+                            <StackPanel>
+
+                                <TextBlock x:Name="ReviewNameLabelText"
+                                           Text="Mag-aaral"
+                                           FontSize="12"
+                                           FontWeight="Bold"
+                                           Foreground="#8393A0"/>
+
+                                <TextBlock x:Name="ReviewNameText"
+                                           Text="-"
+                                           Margin="0,4,0,18"
+                                           FontSize="20"
+                                           FontWeight="Bold"
+                                           Foreground="#183149"
+                                           TextWrapping="Wrap"/>
+
+
+                                <TextBlock x:Name="ReviewInterestLabelText"
+                                           Text="Buruhaton"
+                                           FontSize="12"
+                                           FontWeight="Bold"
+                                           Foreground="#8393A0"/>
+
+                                <TextBlock x:Name="ReviewInterestText"
+                                           Text="-"
+                                           Margin="0,4,0,18"
+                                           FontSize="18"
+                                           Foreground="#183149"
+                                           TextWrapping="Wrap"/>
+
+
+                                <Border x:Name="ReviewDrawingBorder"
+                                        Height="210"
+                                        Background="#FAFAF8"
+                                        BorderBrush="#E5E0D7"
+                                        BorderThickness="1"
+                                        CornerRadius="14">
+
+                                    <InkCanvas x:Name="ReviewDrawingCanvas"
+                                               Background="Transparent"
+                                               IsHitTestVisible="False"
+                                               EditingMode="None"/>
+
+                                </Border>
+
+
+                                <!-- SESSION 3 RESULT -->
+
+                                <Grid x:Name="Session3ReviewPanel"
+                                      Visibility="Collapsed"
+                                      Margin="0,5,0,0">
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="*"/>
+
+                                        <ColumnDefinition Width="15"/>
+
+                                        <ColumnDefinition Width="*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Border Grid.Column="0"
+                                            Background="#FDE8E6"
+                                            CornerRadius="15"
+                                            Padding="18">
+
+                                        <StackPanel>
+
+                                            <TextBlock Text="✋"
+                                                       FontSize="45"
+                                                       HorizontalAlignment="Center"/>
+
+                                            <TextBlock Text="KALIWA"
+                                                       FontWeight="Bold"
+                                                       FontSize="16"
+                                                       Foreground="#B73832"
+                                                       HorizontalAlignment="Center"/>
+
+                                            <TextBlock Text="PULA"
+                                                       FontWeight="Bold"
+                                                       FontSize="22"
+                                                       Foreground="#D94B45"
+                                                       HorizontalAlignment="Center"/>
+
+                                        </StackPanel>
+
+                                    </Border>
+
+
+                                    <Border Grid.Column="2"
+                                            Background="#E5F4FC"
+                                            CornerRadius="15"
+                                            Padding="18">
+
+                                        <StackPanel>
+
+                                            <TextBlock Text="✋"
+                                                       FontSize="45"
+                                                       HorizontalAlignment="Center"/>
+
+                                            <TextBlock Text="KANAN"
+                                                       FontWeight="Bold"
+                                                       FontSize="16"
+                                                       Foreground="#0879BC"
+                                                       HorizontalAlignment="Center"/>
+
+                                            <TextBlock Text="ASUL"
+                                                       FontWeight="Bold"
+                                                       FontSize="22"
+                                                       Foreground="#1594DF"
+                                                       HorizontalAlignment="Center"/>
+
+                                        </StackPanel>
+
+                                    </Border>
+
+                                </Grid>
+
+                            </StackPanel>
+
+                        </Border>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+
+            </Grid>
+
+            <Border x:Name="ActivityFeedbackBorder"
+                    Panel.ZIndex="20"
+                    MaxWidth="620"
+                    Margin="24,12"
+                    Padding="20,12"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Background="#EAF6FD"
+                    BorderBrush="#B8DFF3"
+                    BorderThickness="1"
+                    CornerRadius="16"
+                    Visibility="Collapsed"
+                    IsHitTestVisible="False">
+
+                <TextBlock x:Name="ActivityFeedbackText"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="#0879BC"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"/>
+
+            </Border>
+
+        </Grid>
+
+
+        <!-- =====================================================
+             FOOTER
+             ===================================================== -->
+
+        <Border Grid.Row="2"
+                Background="White"
+                BorderBrush="#ECE8E0"
+                BorderThickness="0,1,0,0">
+
+            <Grid Margin="30,0">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="Auto"/>
+
+                    <ColumnDefinition Width="*"/>
+
+                    <ColumnDefinition Width="Auto"/>
+
+                </Grid.ColumnDefinitions>
+
+
+                <Button x:Name="PreviousStepButton"
+                        Grid.Column="0"
+                        Content="←  Bumalik"
+                        MinWidth="125"
+                        Height="46"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Click="PreviousStepButton_Click"/>
+
+
+                <TextBlock Grid.Column="1"
+                           Text="ARAL Reading Intervention"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="11"
+                           Foreground="#A0ABB4"/>
+
+
+                <Button x:Name="NextStepButton"
+                        Grid.Column="2"
+                        Content="Susunod  →"
+                        MinWidth="135"
+                        Height="46"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Click="NextStepButton_Click"/>
+
+
+                <Button x:Name="CompleteSessionButton"
+                        Grid.Column="2"
+                        Content="✓  Kumpletohon an Sesyon"
+                        MinWidth="205"
+                        Height="46"
+                        VerticalAlignment="Center"
+                        Visibility="Collapsed"
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        Click="CompleteSessionButton_Click"/>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</Page>

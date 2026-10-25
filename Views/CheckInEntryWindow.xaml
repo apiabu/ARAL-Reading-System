@@ -1,0 +1,484 @@
+<Window x:Class="ARALReadingSystem.Views.CheckInEntryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Progress Check-in"
+        Width="920"
+        Height="760"
+        MinWidth="820"
+        MinHeight="650"
+        WindowStartupLocation="CenterOwner"
+        Background="#FFF8EB">
+
+    <Window.Resources>
+
+        <!-- SCORE BUTTON -->
+
+        <Style x:Key="ScoreButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Width"
+                    Value="54"/>
+
+            <Setter Property="Height"
+                    Value="38"/>
+
+            <Setter Property="Margin"
+                    Value="5,0,0,0"/>
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="Foreground"
+                    Value="#17324D"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#CCD9E2"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="7">
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="ButtonBorder"
+                                        Property="Background"
+                                        Value="#F2F8FC"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+        <!-- CANCEL BUTTON -->
+
+        <Style x:Key="CancelButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Height"
+                    Value="44"/>
+
+            <Setter Property="MinWidth"
+                    Value="110"/>
+
+            <Setter Property="Padding"
+                    Value="18,0"/>
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="Foreground"
+                    Value="#344C5C"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#CAD7DF"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8">
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="Border"
+                                        Property="Background"
+                                        Value="#F6F9FB"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+        <!-- SAVE BUTTON -->
+
+        <Style x:Key="SaveButtonStyle"
+               TargetType="Button">
+
+            <Setter Property="Height"
+                    Value="44"/>
+
+            <Setter Property="MinWidth"
+                    Value="150"/>
+
+            <Setter Property="Padding"
+                    Value="20,0"/>
+
+            <Setter Property="Background"
+                    Value="#0877BE"/>
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="FontSize"
+                    Value="14"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8">
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="Border"
+                                        Property="Background"
+                                        Value="#0667A6"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ===================================================== -->
+        <!-- HEADER                                                -->
+        <!-- ===================================================== -->
+
+        <Border Grid.Row="0"
+                Background="White"
+                BorderBrush="#E2E7EA"
+                BorderThickness="0,0,0,1"
+                Padding="28,22">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+
+                    <TextBlock x:Name="WindowTitleText"
+                               Text="Progress Check-in #1"
+                               FontSize="23"
+                               FontWeight="Bold"
+                               Foreground="#17324D"/>
+
+                    <TextBlock x:Name="PupilNameText"
+                               Margin="0,6,0,0"
+                               FontSize="14"
+                               Foreground="#637A8A"/>
+
+                </StackPanel>
+
+                <Border Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Background="#EAF5FC"
+                        CornerRadius="14"
+                        Padding="14,7">
+
+                    <TextBlock x:Name="LiveScoreText"
+                               Text="0 / 17 tama"
+                               FontSize="14"
+                               FontWeight="SemiBold"
+                               Foreground="#0877BE"/>
+
+                </Border>
+
+            </Grid>
+
+        </Border>
+
+        <!-- ===================================================== -->
+        <!-- CONTENT                                               -->
+        <!-- ===================================================== -->
+
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto">
+
+            <StackPanel Margin="28,24,28,30">
+
+                <Border Background="#EEF7FD"
+                        BorderBrush="#D4EAF7"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="16,13"
+                        Margin="0,0,0,20">
+
+                    <TextBlock TextWrapping="Wrap"
+                               FontSize="13"
+                               Foreground="#49687C"
+                               Text="Piliin ang 1 kung tama ang sagot ng mag-aaral at 0 kung mali. Lahat ng 17 aytem ay kailangang mamarkahan bago i-save."/>
+
+                </Border>
+
+                <!-- TITIK -->
+
+                <Border Background="White"
+                        BorderBrush="#DFE7EC"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20"
+                        Margin="0,0,0,16">
+
+                    <StackPanel>
+
+                        <Grid Margin="0,0,0,12">
+
+                            <TextBlock Text="TITIK"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       Foreground="#17324D"/>
+
+                            <TextBlock Text="6 aytem"
+                                       HorizontalAlignment="Right"
+                                       FontSize="12"
+                                       Foreground="#718594"/>
+
+                        </Grid>
+
+                        <StackPanel x:Name="TitikItemsPanel"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- PANTIG -->
+
+                <Border Background="White"
+                        BorderBrush="#DFE7EC"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20"
+                        Margin="0,0,0,16">
+
+                    <StackPanel>
+
+                        <Grid Margin="0,0,0,12">
+
+                            <TextBlock Text="PANTIG"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       Foreground="#17324D"/>
+
+                            <TextBlock Text="4 aytem"
+                                       HorizontalAlignment="Right"
+                                       FontSize="12"
+                                       Foreground="#718594"/>
+
+                        </Grid>
+
+                        <StackPanel x:Name="PantigItemsPanel"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- SALITA -->
+
+                <Border Background="White"
+                        BorderBrush="#DFE7EC"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20"
+                        Margin="0,0,0,16">
+
+                    <StackPanel>
+
+                        <Grid Margin="0,0,0,12">
+
+                            <TextBlock Text="SALITA"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       Foreground="#17324D"/>
+
+                            <TextBlock Text="4 aytem"
+                                       HorizontalAlignment="Right"
+                                       FontSize="12"
+                                       Foreground="#718594"/>
+
+                        </Grid>
+
+                        <StackPanel x:Name="SalitaItemsPanel"/>
+
+                    </StackPanel>
+
+                </Border>
+
+                <!-- PARIRALA -->
+
+                <Border Background="White"
+                        BorderBrush="#DFE7EC"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="20">
+
+                    <StackPanel>
+
+                        <Grid Margin="0,0,0,12">
+
+                            <TextBlock Text="PARIRALA"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       Foreground="#17324D"/>
+
+                            <TextBlock Text="3 aytem"
+                                       HorizontalAlignment="Right"
+                                       FontSize="12"
+                                       Foreground="#718594"/>
+
+                        </Grid>
+
+                        <StackPanel x:Name="PariralaItemsPanel"/>
+
+                    </StackPanel>
+
+                </Border>
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+        <!-- ===================================================== -->
+        <!-- FOOTER                                                -->
+        <!-- ===================================================== -->
+
+        <Border Grid.Row="2"
+                Background="White"
+                BorderBrush="#E2E7EA"
+                BorderThickness="0,1,0,0"
+                Padding="28,16">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel VerticalAlignment="Center">
+
+                    <TextBlock x:Name="AnsweredText"
+                               Text="0 / 17 aytem ang namarkahan"
+                               FontSize="12"
+                               Foreground="#718594"/>
+
+                    <TextBlock x:Name="ElapsedTimeText"
+                               Text="Oras: 0s"
+                               Margin="0,3,0,0"
+                               FontSize="12"
+                               Foreground="#718594"/>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal">
+
+                    <Button Content="Kanselahin"
+                            Margin="0,0,10,0"
+                            Style="{StaticResource CancelButtonStyle}"
+                            Click="CancelButton_Click"/>
+
+                    <Button Content="I-save ang Score"
+                            Style="{StaticResource SaveButtonStyle}"
+                            Click="SaveButton_Click"/>
+
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+    </Grid>
+
+</Window>

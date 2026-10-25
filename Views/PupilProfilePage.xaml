@@ -1,0 +1,374 @@
+<Page x:Class="ARALReadingSystem.Views.PupilProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Background="#F7FAFC">
+
+    <Page.Resources>
+
+        <Style x:Key="BlueButton"
+               TargetType="Button">
+
+            <Setter Property="Background"
+                    Value="#1594DF"/>
+
+            <Setter Property="Foreground"
+                    Value="White"/>
+
+            <Setter Property="BorderThickness"
+                    Value="0"/>
+
+            <Setter Property="FontWeight"
+                    Value="Bold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="12"
+                            Padding="18,0">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+
+        <Style x:Key="SessionButton"
+               TargetType="Button">
+
+            <Setter Property="Height"
+                    Value="82"/>
+
+            <Setter Property="Margin"
+                    Value="6"/>
+
+            <Setter Property="Background"
+                    Value="White"/>
+
+            <Setter Property="Foreground"
+                    Value="#102C45"/>
+
+            <Setter Property="BorderBrush"
+                    Value="#DCE7EE"/>
+
+            <Setter Property="BorderThickness"
+                    Value="1"/>
+
+            <Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+            <Setter Property="Cursor"
+                    Value="Hand"/>
+
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="Button">
+
+                        <Border x:Name="SessionBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="13">
+
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+
+                                <Setter TargetName="SessionBorder"
+                                        Property="Background"
+                                        Value="#EAF6FE"/>
+
+                                <Setter TargetName="SessionBorder"
+                                        Property="BorderBrush"
+                                        Value="#1594DF"/>
+
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled"
+                                     Value="False">
+
+                                <Setter TargetName="SessionBorder"
+                                        Property="Background"
+                                        Value="#F2F4F5"/>
+
+                                <Setter TargetName="SessionBorder"
+                                        Property="BorderBrush"
+                                        Value="#E4E8EB"/>
+
+                                <Setter Property="Foreground"
+                                        Value="#A7B0B7"/>
+
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+    </Page.Resources>
+
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <StackPanel Margin="35,28">
+
+            <!-- BACK -->
+
+            <Button
+                Content="←  Balik ha mga Mag-aaral"
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                Foreground="#168ED4"
+                BorderThickness="0"
+                FontSize="13"
+                FontWeight="SemiBold"
+                Cursor="Hand"
+                Click="BackButton_Click"
+                Margin="0,0,0,20"/>
+
+
+            <!-- PROFILE -->
+
+            <Border
+                Background="White"
+                CornerRadius="18"
+                Padding="26"
+                Margin="0,0,0,22">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border
+                        Width="60"
+                        Height="60"
+                        CornerRadius="30"
+                        Background="#DFF2FD">
+
+                        <TextBlock
+                            Text="A"
+                            Foreground="#1594DF"
+                            FontSize="24"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+
+                    </Border>
+
+
+                    <StackPanel
+                        Grid.Column="1"
+                        VerticalAlignment="Center">
+
+                        <TextBlock
+                            x:Name="PupilNameText"
+                            Text="Pupil Name"
+                            Foreground="#102C45"
+                            FontSize="23"
+                            FontWeight="Bold"/>
+
+                        <TextBlock
+                            x:Name="GradeLevelText"
+                            Text="Grade Level"
+                            Foreground="#82919E"
+                            FontSize="13"
+                            Margin="0,5,0,0"/>
+
+                    </StackPanel>
+
+
+                    <Button
+                        x:Name="ResumeButton"
+                        Grid.Column="2"
+                        Width="190"
+                        Height="48"
+                        Content="Ipadayon an Sesyon"
+                        Style="{StaticResource BlueButton}"
+                        Click="ResumeButton_Click"/>
+
+                </Grid>
+
+            </Border>
+
+
+            <!-- PROGRESS -->
+
+            <Border
+                Background="#DDF1FD"
+                CornerRadius="18"
+                Padding="25"
+                Margin="0,0,0,22">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+
+                        <TextBlock
+                            Text="Progreso ha Pagbasa"
+                            Foreground="#102C45"
+                            FontSize="18"
+                            FontWeight="Bold"/>
+
+                        <TextBlock
+                            x:Name="ProgressDescriptionText"
+                            Text="0 han 36 nga sesyon an natapos."
+                            Foreground="#60798B"
+                            FontSize="13"
+                            Margin="0,6,0,15"/>
+
+                        <ProgressBar
+                            x:Name="ProgressBar"
+                            Minimum="0"
+                            Maximum="36"
+                            Value="0"
+                            Height="10"/>
+
+                    </StackPanel>
+
+
+                    <StackPanel
+                        Grid.Column="1"
+                        Margin="30,0,0,0"
+                        VerticalAlignment="Center">
+
+                        <TextBlock
+                            x:Name="ProgressNumberText"
+                            Text="0 / 36"
+                            Foreground="#1594DF"
+                            FontSize="27"
+                            FontWeight="Bold"
+                            HorizontalAlignment="Center"/>
+
+                        <TextBlock
+                            Text="Natapos"
+                            Foreground="#7790A1"
+                            FontSize="11"
+                            HorizontalAlignment="Center"/>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </Border>
+
+
+            <!-- CHECK-IN STATUS -->
+
+            <Border
+                Background="#FFF8EA"
+                CornerRadius="16"
+                Padding="20"
+                Margin="0,0,0,26">
+
+                <Grid>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel>
+
+                        <TextBlock
+                            Text="Progress Check-in #1"
+                            Foreground="#102C45"
+                            FontSize="15"
+                            FontWeight="Bold"/>
+
+                        <TextBlock
+                            x:Name="CheckIn1StatusText"
+                            Text="🔒 Maaabli human han Sesyon 9"
+                            Foreground="#7F8E98"
+                            FontSize="12"
+                            Margin="0,5,0,0"/>
+
+                    </StackPanel>
+
+                    <Border
+                        x:Name="CheckIn1Badge"
+                        Grid.Column="1"
+                        Background="#ECEFF1"
+                        CornerRadius="10"
+                        Padding="14,7"
+                        VerticalAlignment="Center">
+
+                        <TextBlock
+                            x:Name="CheckIn1BadgeText"
+                            Text="LOCKED"
+                            Foreground="#87949D"
+                            FontSize="10"
+                            FontWeight="Bold"/>
+
+                    </Border>
+
+                </Grid>
+
+            </Border>
+
+
+            <!-- SESSION HEADING -->
+
+            <TextBlock
+                Text="36 nga Sesyon"
+                Foreground="#102C45"
+                FontSize="21"
+                FontWeight="Bold"/>
+
+            <TextBlock
+                Text="Taposa an mga sesyon sunod-sunod. Awtomatiko nga mase-save an progreso."
+                Foreground="#82919E"
+                FontSize="13"
+                Margin="0,5,0,15"/>
+
+
+            <!-- 36 BUTTONS -->
+
+            <UniformGrid
+                x:Name="SessionsGrid"
+                Columns="6"/>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Page>
